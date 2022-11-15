@@ -116,7 +116,10 @@ class Menu():
         user,passw = self.user.get_value(),self.password.get_value()
         if self.data.login(user,passw):
             print("thanh cong")
-            game = Game(self.screen).run()
+            theme = "dark"
+            if self.theme.get_value():
+                theme = 'light'
+            game = Game(self.screen,theme).run()
         else:
             print('Thatbai')
 
