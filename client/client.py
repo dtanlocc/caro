@@ -35,8 +35,8 @@ pygame.init()
 # Set the HEIGHT and WIDTH of the screen
 WINDOW_SIZE = [1920,990]
 screen = pygame.display.set_mode(WINDOW_SIZE)
-x_img = pygame.transform.smoothscale(pygame.image.load("X_modified-100x100.png").convert(),(28,28))
-o_img = pygame.transform.smoothscale(pygame.image.load("o_modified-100x100.png").convert(),(28,28))
+x_img = pygame.transform.smoothscale(pygame.image.load("image\X_modified-100×100.png").convert(),(28,28))
+o_img = pygame.transform.smoothscale(pygame.image.load("image\O_modified-100×100.png").convert(),(28,28))
 # Set title of screen
 pygame.display.set_caption("Caro")
 def checkwin(board):
