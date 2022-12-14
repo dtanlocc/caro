@@ -1,13 +1,15 @@
 import pygame
 import pygame_menu
 from init import *
-from database.database import *
+from clients import *
 from game import *
+from home import *
 
 class Menu():
-    def __init__(self,screen) -> None:
+    def __init__(self,screen,client) -> None:
+        self.player = client
         self.screen = screen
-        self.data = Database()
+        
         self.menuTheme = pygame_menu.Theme(
             background_color=pygame_menu.baseimage.BaseImage(image_path="image//background.png"),
             title_bar_style=pygame_menu.widgets.MENUBAR_STYLE_NONE,
@@ -64,7 +66,7 @@ class Menu():
                             background_color=(0, 14, 51)
                             ).translate(0, 100)
 
-        self.menu.add.button('LOG IN', action=self.login,
+        self.menu.add.button(' LOG IN', action=self.login,
                              font_color=(51, 191, 251),
                              font_name=pygame_menu.font.FONT_FIRACODE_BOLD,
                              align=pygame_menu.locals.ALIGN_CENTER,
@@ -89,43 +91,46 @@ class Menu():
                             background_color=(0, 14, 51)
                             ).translate(0, 165)
 
-        self.menu.add.label("Settings",
-                            font_name=pygame_menu.font.FONT_8BIT,
-                            font_color=(255, 255, 255),
-                            align=pygame_menu.locals.ALIGN_LEFT,
-                            shadow_color=(0, 0, 100),
-                            font_size=16
-                            ).translate(0, 250)
-        self.theme = self.menu.add.toggle_switch('Theme', False, width=100,
-                            font_name=pygame_menu.font.FONT_NEVIS,
-                            font_color=(255, 255, 255), padding=0,
-                            selection_effect=pygame_menu.widgets.NoneSelection(),
-                            align=pygame_menu.locals.ALIGN_LEFT,
-                            font_size=16, state_text=('Light', 'Dark'),
-                            slider_color=(48, 94, 140),
-                            state_color=((255, 255, 255), (8, 14, 58)),
-                            switch_margin=(20, 0),
-                            state_text_font_color=((8, 14, 58), (255, 255, 255)),
-                            switch_height=1.8,
-                            switch_border_width=1,
-                            cursor=pygame_menu.locals.CURSOR_HAND
-                            ).translate(30, 265)
+        # self.menu.add.label("Settings",
+        #                     font_name=pygame_menu.font.FONT_8BIT,
+        #                     font_color=(255, 255, 255),
+        #                     align=pygame_menu.locals.ALIGN_LEFT,
+        #                     shadow_color=(0, 0, 100),
+        #                     font_size=16
+        #                     ).translate(0, 250)
+        # self.theme = self.menu.add.toggle_switch('Theme', False, width=100,
+        #                     font_name=pygame_menu.font.FONT_NEVIS,
+        #                     font_color=(255, 255, 255), padding=0,
+        #                     selection_effect=pygame_menu.widgets.NoneSelection(),
+        #                     align=pygame_menu.locals.ALIGN_LEFT,
+        #                     font_size=16, state_text=('Light', 'Dark'),
+        #                     slider_color=(48, 94, 140),
+        #                     state_color=((255, 255, 255), (8, 14, 58)),
+        #                     switch_margin=(20, 0),
+        #                     state_text_font_color=((8, 14, 58), (255, 255, 255)),
+        #                     switch_height=1.8,
+        #                     switch_border_width=1,
+        #                     cursor=pygame_menu.locals.CURSOR_HAND
+        #                     ).translate(30, 265)
 
 
     def login(self):
         user,passw = self.user.get_value(),self.password.get_value()
-        if self.data.login(user,passw):
-            print("thanh cong")
-            theme = "dark"
-            if self.theme.get_value():
-                theme = 'light'
-            game = Game(self.screen,theme).run()
+        
+        if self.player.login(user,passw):
+            # print("thanh cong")
+            # theme = "dark"
+            # if self.theme.get_value():
+            #     theme = 'light'
+            # game = Game(self.screen,theme).run()
+            home = Home(self.screen,user,self.player).run()
         else:
             print('Thatbai')
+            self.login
 
     def signin(self):
         user,passw = self.user.get_value(),self.password.get_value()
-        if self.data.signin(user,passw):
+        if self.player.singin(user,passw):
             str = "Đăng kí thành công!!!"
         else:
             str = "Đăng kí thất bại!!!!!!!"
@@ -135,6 +140,7 @@ class Menu():
                             font_size=20,
                             align=pygame_menu.locals.ALIGN_CENTER
                             ).translate(0, 250)
+        
     def run(self):
         self.menu.mainloop(self.screen)
     
