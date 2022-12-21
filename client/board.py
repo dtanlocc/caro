@@ -20,8 +20,8 @@ class Board:
             for column in range(colnum):
                 self.grid[row].append(0)
 
-        self.x_img = get_img("image\X_modified-100×100-red.png")
-        self.o_img = get_img("image\O_modified-100×100-blue.png")
+        self.x_img = get_img("client\image\X_modified-100×100-red.png")
+        self.o_img = get_img("client\image\O_modified-100×100-blue.png")
         
     def return_grid(self):
         return self.grid

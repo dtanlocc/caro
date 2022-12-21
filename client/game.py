@@ -10,8 +10,8 @@ class Game:
         self.roomid = roomid
         self.screen = screen
         self.clock = pygame.time.Clock()
-        self.x_img = get_img("image\X_modified-100×100-red.png")
-        self.o_img = get_img("image\O_modified-100×100-blue.png")
+        self.x_img = get_img("client\image\X_modified-100×100-red.png")
+        self.o_img = get_img("client\image\O_modified-100×100-blue.png")
         self.board = Board(self.screen,theme)
         self.grid = self.board.return_grid()
         self.X0 = X0

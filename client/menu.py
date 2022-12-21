@@ -11,7 +11,7 @@ class Menu():
         self.screen = screen
         
         self.menuTheme = pygame_menu.Theme(
-            background_color=pygame_menu.baseimage.BaseImage(image_path="image//background.png"),
+            background_color=pygame_menu.baseimage.BaseImage(image_path="client/image/background.png"),
             title_bar_style=pygame_menu.widgets.MENUBAR_STYLE_NONE,
             widget_alignment=pygame_menu.locals.ALIGN_CENTER,
             title=False,

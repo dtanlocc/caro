@@ -34,6 +34,7 @@ class Sever:
         
 
         self.clients = {"conn":[], "roomid":[]}
+
     def create_grid(self):
         self.grid = []
         for row in range(rownum):
@@ -146,7 +147,7 @@ class Sever:
                 if conn != conn1:
                 # print(conn)
                     self.sendData("15;"+str(roomid)+";"+str(X0)+";"+str(row)+";"+str(col)+";",conn1)
-        # print(2)
+        
         # self.sendData("15;"+str(roomid)+str(X0)+";"+str(row)+";"+str(col)+";",conn2)
 
     def handle_client(self,conn,addr):
